@@ -1,9 +1,9 @@
 // ignore_for_file: must_be_immutable, prefer_typing_uninitialized_variables
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_assets.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_colors.dart';
-import 'package:just_audio/just_audio.dart';
 
 class AudioFile extends StatefulWidget {
   const AudioFile(
@@ -20,18 +20,45 @@ class _AudioFileState extends State<AudioFile> {
   Duration position = const Duration();
   bool isPlaying = false;
   bool isPause = false;
-  bool isLoop = false;
-  final source = "assets/audio/sample-15s.wav";
+  bool isRepeat = false;
+  final path = "sounds/Faded.mp3";
+
+  @override
+  void initState() {
+    super.initState();
+    widget.audioPlayer.onDurationChanged.listen((event) {
+      setState(() {
+        duration = event;
+      });
+    });
+    widget.audioPlayer.onPositionChanged.listen((event) {
+      setState(() {
+        position = event;
+      });
+    });
+    widget.audioPlayer.setSource(AssetSource(path));
+    widget.audioPlayer.onPlayerComplete.listen((event) {
+      position = const Duration(seconds: 0);
+      if (isRepeat == true) {
+        isPlaying = true;
+      } else {
+        isPlaying = false;
+        isRepeat = false;
+      }
+    });
+  }
 
   Widget btnStart() {
     return InkWell(
       onTap: () async {
         if (isPlaying == false) {
+          widget.audioPlayer.play(AssetSource(path));
           setState(() {
             isPlaying = true;
             widget.updateIsPlaying(isPlaying);
           });
         } else if (isPlaying == true) {
+          widget.audioPlayer.pause();
           setState(() {
             isPlaying = false;
             widget.updateIsPlaying(isPlaying);
@@ -46,19 +73,57 @@ class _AudioFileState extends State<AudioFile> {
 
   Widget btnFastForward() {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        widget.audioPlayer.setPlaybackRate(1.5);
+      },
       child: Image.asset(AppAssets.fast_forward),
     );
   }
 
   Widget btnReviewForward() {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        widget.audioPlayer.setPlaybackRate(0.5);
+      },
       child: Transform.flip(
         flipX: true,
         child: Image.asset(
           AppAssets.fast_forward,
         ),
+      ),
+    );
+  }
+
+  Widget btnRepeat() {
+    return InkWell(
+      onTap: () {
+        if (isRepeat == false) {
+          widget.audioPlayer.setReleaseMode(ReleaseMode.loop);
+          setState(() {
+            isRepeat = true;
+          });
+        } else if (isRepeat == true) {
+          widget.audioPlayer.setReleaseMode(ReleaseMode.release);
+          setState(() {
+            isRepeat = false;
+          });
+        }
+      },
+      child: Image.asset(
+        AppAssets.repeat,
+        height: 32,
+        color:
+            isRepeat == true ? AppColors.systemPrimary : AppColors.textPrimary,
+      ),
+    );
+  }
+
+  Widget btnRandom() {
+    return InkWell(
+      onTap: () {},
+      child: Image.asset(
+        AppAssets.random,
+        height: 32,
       ),
     );
   }
@@ -69,11 +134,18 @@ class _AudioFileState extends State<AudioFile> {
       inactiveColor: AppColors.textSecondary,
       value: position.inSeconds.toDouble(),
       min: 0.0,
-      max: duration.inSeconds.toDouble(),
+      max: duration.inSeconds.toDouble() + 1,
       onChanged: (double value) {
-        setState(() {});
+        setState(() {
+          changeToSecond(value.toInt());
+        });
       },
     );
+  }
+
+  void changeToSecond(int seconds) {
+    Duration newDuration = Duration(seconds: seconds);
+    widget.audioPlayer.seek(newDuration);
   }
 
   Widget loadAsset() {
@@ -81,9 +153,11 @@ class _AudioFileState extends State<AudioFile> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
+        btnRepeat(),
         btnReviewForward(),
         btnStart(),
         btnFastForward(),
+        btnRandom(),
       ],
     );
   }

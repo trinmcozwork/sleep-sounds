@@ -8,10 +8,46 @@
       "languageVersion": "2.18"
     },
     {
-      "name": "audio_session",
-      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/audio_session-0.1.18",
+      "name": "audioplayers",
+      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/audioplayers-5.2.1",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "audioplayers_android",
+      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/audioplayers_android-4.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "audioplayers_darwin",
+      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/audioplayers_darwin-5.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "audioplayers_linux",
+      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/audioplayers_linux-3.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "audioplayers_platform_interface",
+      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/audioplayers_platform_interface-6.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "audioplayers_web",
+      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/audioplayers_web-4.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "audioplayers_windows",
+      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/audioplayers_windows-3.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "boolean_selector",
@@ -52,6 +88,12 @@
     {
       "name": "ffi",
       "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/ffi-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "file",
+      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/file-7.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -102,24 +144,6 @@
       "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/js-0.6.7",
       "packageUri": "lib/",
       "languageVersion": "2.19"
-    },
-    {
-      "name": "just_audio",
-      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/just_audio-0.9.36",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
-      "name": "just_audio_platform_interface",
-      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/just_audio_platform_interface-4.2.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
-      "name": "just_audio_web",
-      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/just_audio_web-0.4.9",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
     },
     {
       "name": "lints",
@@ -206,12 +230,6 @@
       "languageVersion": "3.0"
     },
     {
-      "name": "rxdart",
-      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/rxdart-0.27.7",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "sky_engine",
       "rootUri": "file:///C:/src/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -246,6 +264,12 @@
       "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/string_scanner-1.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "synchronized",
+      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/synchronized-3.1.0+1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "term_glyph",
@@ -296,7 +320,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-12-20T07:23:42.501267Z",
+  "generated": "2023-12-20T09:11:43.876184Z",
   "generator": "pub",
   "generatorVersion": "3.1.0-197.0.dev"
 }

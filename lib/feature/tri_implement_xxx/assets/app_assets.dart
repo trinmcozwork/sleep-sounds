@@ -24,4 +24,6 @@ class AppAssets {
   static const String play = "assets/audio/icons8-play.png";
   static const String pause = "assets/audio/icons8-pause.png";
   static const String fast_forward = "assets/audio/icons8-fast_forward.png";
+  static const String repeat = "assets/audio/icons8-repeat-64.png";
+  static const String random = "assets/audio/icons8-random-64.png";
 }
