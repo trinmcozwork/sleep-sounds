@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\trica\Documents\COZWork\source-flutter\flutter_sleep_sounds\build\windows\CMakeFiles\49d02f011d6ac220ee2400d117706bc3\flutter_windows.dll.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\trica\Documents\COZWork\source-flutter\flutter_sleep_sounds\build\windows\CMakeFiles\92c45826d0a575d54e08f28483043f46\flutter_assemble.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\trica\Documents\COZWork\source-flutter\flutter_sleep_sounds\windows\flutter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\trica\Documents\COZWork\source-flutter\flutter_sleep_sounds\build\windows\flutter\CMakeFiles\flutter_assemble" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{BDDFCC95-F08F-3CC6-9C42-082E9FB3B8C1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

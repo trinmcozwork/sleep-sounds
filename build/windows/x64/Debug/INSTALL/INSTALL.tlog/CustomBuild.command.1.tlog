@@ -1,0 +1,10 @@
+^C:\USERS\TRICA\DOCUMENTS\COZWORK\SOURCE-FLUTTER\FLUTTER_SLEEP_SOUNDS\BUILD\WINDOWS\CMAKEFILES\022061052A140358389E53422C7BE29C\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

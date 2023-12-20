@@ -1,0 +1,10 @@
+C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/CMakeFiles/INSTALL.dir
+C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/CMakeFiles/ALL_BUILD.dir
+C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/CMakeFiles/ZERO_CHECK.dir
+C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/flutter/CMakeFiles/flutter_wrapper_plugin.dir
+C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/flutter/CMakeFiles/flutter_wrapper_app.dir
+C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/flutter/CMakeFiles/flutter_assemble.dir
+C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/flutter/CMakeFiles/INSTALL.dir
+C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/runner/CMakeFiles/flutter_sleep_sounds.dir
+C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/runner/CMakeFiles/INSTALL.dir
+C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/runner/CMakeFiles/ALL_BUILD.dir
