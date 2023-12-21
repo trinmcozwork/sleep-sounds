@@ -140,6 +140,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
+    <ProjectReference Include="C:\Users\trica\Documents\COZWork\source-flutter\flutter_sleep_sounds\build\windows\plugins\audioplayers_windows\audioplayers_windows_plugin.vcxproj">
+      <Project>{654555E8-CFDF-345D-9B8F-7B716072F658}</Project>
+      <Name>audioplayers_windows_plugin</Name>
+    </ProjectReference>
     <ProjectReference Include="C:\Users\trica\Documents\COZWork\source-flutter\flutter_sleep_sounds\build\windows\runner\flutter_sleep_sounds.vcxproj">
       <Project>{BE0C04E6-48D1-322D-BF7A-6154D1A5246B}</Project>
       <Name>flutter_sleep_sounds</Name>

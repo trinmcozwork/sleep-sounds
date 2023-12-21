@@ -3,13 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_assets.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_colors.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_icons.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/play_screen.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/draggable_scroll_pack.dart';
 
 class PackDetails extends StatefulWidget {
-  const PackDetails(
-      {super.key, required this.index, required this.loadedSongs});
+  const PackDetails({super.key, required this.index, required this.loadList});
   final index;
-  final loadedSongs;
+  final loadList;
 
   @override
   State<PackDetails> createState() => _PackDetailsState();
@@ -23,18 +24,23 @@ class _PackDetailsState extends State<PackDetails> {
     });
   }
 
+  int songId = 0;
+  _updateSong(int isUpdatedSong) {
+    setState(() {
+      songId = isUpdatedSong;
+    });
+  }
+
   Widget btnStart() {
     return InkWell(
       onTap: () {
-        // if (isPlaying == false) {
-        //   setState(() {
-        //     isPlaying = true;
-        //   });
-        // } else if (isPlaying == true) {
-        //   setState(() {
-        //     isPlaying = false;
-        //   });
-        // }
+        setState(() {
+          if (isPlaying) {
+            isPlaying = false;
+          } else {
+            isPlaying = true;
+          }
+        });
       },
       child: isPlaying == false
           ? Image.asset(
@@ -88,7 +94,7 @@ class _PackDetailsState extends State<PackDetails> {
                           style: TextStyle(
                             color: AppColors.systemPrimary,
                             fontSize: 17,
-                            fontFamily: 'SF Pro Display',
+                            fontFamily: 'Nunito',
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -96,78 +102,164 @@ class _PackDetailsState extends State<PackDetails> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 500,
-                  child: Image.network(
-                    widget.loadedSongs[widget.index]['img'],
-                    fit: BoxFit.fitHeight,
-                  ),
+                Stack(
+                  children: [
+                    SizedBox(
+                      height: 500,
+                      child: Image.network(
+                        widget.loadList[widget.index]['img'],
+                        fit: BoxFit.fitHeight,
+                      ),
+                    ),
+                    Positioned(
+                      top: 200,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 41),
+                        height: 70,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              children: [
+                                Image.asset(AppIcons.sleeping),
+                                const Text(
+                                  'Mood',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 13,
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                const Text(
+                                  'Lighthearted',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Image.asset(AppIcons.sleep),
+                                const Text(
+                                  'Dreams',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 13,
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                const Text(
+                                  'Daydreams',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),
             DraggableScrollPackDetails(
-              loadedSongs: widget.loadedSongs,
+              loadList: widget.loadList,
               index: widget.index,
               updateIsPlaying: _updateIsPlaying,
+              updateSong: _updateSong,
             ),
             Positioned(
               bottom: 0,
-              child: Container(
-                width: MediaQuery.of(context).size.width.toDouble(),
-                height: 70,
-                color: AppColors.systemPrimary,
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PlayScreen(
+                        index: widget.index,
+                        loadList: widget.loadList,
+                        loadSong: widget.loadList[widget.index]['listOfSongs']
+                            [0],
+                      ),
+                    ),
+                  );
+                },
                 child: Container(
-                  padding: const EdgeInsets.all(8),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 16),
-                          height: 60,
-                          width: 60,
-                          child: Image.network(
-                            widget.loadedSongs[widget.index]['img'],
-                            fit: BoxFit.fitHeight,
+                  width: MediaQuery.of(context).size.width.toDouble(),
+                  height: 70,
+                  color: AppColors.systemPrimary,
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 16),
+                            height: 60,
+                            width: 60,
+                            child: Image.network(
+                              widget.loadList[widget.index]['img'],
+                              fit: BoxFit.fitHeight,
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 4,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'The Guitars',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                fontFamily: 'SF Pro Rounded',
-                                fontWeight: FontWeight.w400,
+                        Expanded(
+                          flex: 4,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                // "aaa",
+                                widget.loadList[widget.index]['listOfSongs']
+                                    [songId]['songName'],
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontFamily: 'Nunito',
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
-                            Text(
-                              widget.loadedSongs[widget.index]['title'],
-                              style: const TextStyle(
-                                color: Color(0x99EBEBF5),
-                                fontSize: 13,
-                                fontFamily: 'SF Pro Rounded',
-                                fontWeight: FontWeight.w400,
-                              ),
-                            )
-                          ],
+                              Text(
+                                widget.loadList[widget.index]['title'],
+                                style: const TextStyle(
+                                  color: Color(0x99EBEBF5),
+                                  fontSize: 13,
+                                  fontFamily: 'Nunito',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: btnStart(),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: btnFastForward(),
-                      ),
-                    ],
+                        Expanded(
+                          flex: 1,
+                          child: btnStart(),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: btnFastForward(),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

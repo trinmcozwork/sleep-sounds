@@ -173,20 +173,20 @@ class _AudioFileState extends State<AudioFile> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                position.toString().split('.')[0],
+                position.toString().split('.')[0].substring(2),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 15,
-                  fontFamily: 'SF Pro Rounded',
+                  fontFamily: 'Nunito',
                   fontWeight: FontWeight.w400,
                 ),
               ),
               Text(
-                duration.toString().split('.')[0],
+                duration.toString().split('.')[0].substring(2),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 15,
-                  fontFamily: 'SF Pro Rounded',
+                  fontFamily: 'Nunito',
                   fontWeight: FontWeight.w400,
                 ),
               )

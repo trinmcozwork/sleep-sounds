@@ -14,7 +14,7 @@ class SleepScreen extends StatefulWidget {
 }
 
 class _SleepScreenState extends State<SleepScreen> {
-  List loadedSongs = [];
+  List loadList = [];
 
   Future<List<SoundsDetails>> fetchData() async {
     const apiUrl = 'https://6572aae9192318b7db407e1b.mockapi.io/mydata';
@@ -25,7 +25,7 @@ class _SleepScreenState extends State<SleepScreen> {
       List jsonResponse = json.decode(response.body);
 
       setState(() {
-        loadedSongs = jsonResponse;
+        loadList = jsonResponse;
       });
       return jsonResponse.map((data) => SoundsDetails.fromJson(data)).toList();
     } else {
@@ -52,7 +52,7 @@ class _SleepScreenState extends State<SleepScreen> {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 34,
-                    fontFamily: 'SF Pro Rounded',
+                    fontFamily: 'Nunito',
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -83,7 +83,7 @@ class _SleepScreenState extends State<SleepScreen> {
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 17,
-                              fontFamily: 'SF Pro Rounded',
+                              fontFamily: 'Nunito',
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -109,7 +109,7 @@ class _SleepScreenState extends State<SleepScreen> {
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 17,
-                              fontFamily: 'SF Pro Rounded',
+                              fontFamily: 'Nunito',
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -135,7 +135,7 @@ class _SleepScreenState extends State<SleepScreen> {
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 17,
-                              fontFamily: 'SF Pro Rounded',
+                              fontFamily: 'Nunito',
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -152,7 +152,7 @@ class _SleepScreenState extends State<SleepScreen> {
                 future: fetchData(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    return GridViewSongs(loadedSongs: loadedSongs);
+                    return GridViewSongs(loadList: loadList);
                   } else if (snapshot.hasError) {
                     return const Text('Error');
                   } else {

@@ -13,7 +13,7 @@ class SoundsDetails {
   final String title;
   final String time;
   final String filter;
-  final bool isFavorite;
+  late final bool isFavorite;
   final String description;
   final List<ListOfSong> listOfSongs;
   final String img;

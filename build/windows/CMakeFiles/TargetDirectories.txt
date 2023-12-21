@@ -8,3 +8,6 @@ C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windo
 C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/runner/CMakeFiles/flutter_sleep_sounds.dir
 C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/runner/CMakeFiles/INSTALL.dir
 C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/runner/CMakeFiles/ALL_BUILD.dir
+C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/plugins/audioplayers_windows/CMakeFiles/audioplayers_windows_plugin.dir
+C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/plugins/audioplayers_windows/CMakeFiles/INSTALL.dir
+C:/Users/trica/Documents/COZWork/source-flutter/flutter_sleep_sounds/build/windows/plugins/audioplayers_windows/CMakeFiles/ALL_BUILD.dir

@@ -5,24 +5,24 @@ import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverS
 class GridViewSongs extends StatelessWidget {
   const GridViewSongs({
     super.key,
-    required this.loadedSongs,
+    required this.loadList,
   });
 
-  final List loadedSongs;
+  final List loadList;
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: loadedSongs.length,
+      itemCount: loadList.length,
       itemBuilder: (BuildContext context, index) {
-        return GestureDetector(
+        return InkWell(
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => PackDetails(
                   index: index,
-                  loadedSongs: loadedSongs,
+                  loadList: loadList,
                 ),
               ),
             );
@@ -35,7 +35,7 @@ class GridViewSongs extends StatelessWidget {
                     width: 140,
                     height: 140,
                     child: Image.network(
-                      loadedSongs[index]['img'],
+                      loadList[index]['img'],
                       fit: BoxFit.fitHeight,
                     ),
                   ),
@@ -76,11 +76,11 @@ class GridViewSongs extends StatelessWidget {
                 height: 8,
               ),
               Text(
-                loadedSongs[index]['title'],
+                loadList[index]['title'],
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 17,
-                  fontFamily: 'SF Pro Rounded',
+                  fontFamily: 'Nunito',
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -91,11 +91,11 @@ class GridViewSongs extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    loadedSongs[index]['time'],
+                    loadList[index]['time'],
                     style: const TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: 13,
-                      fontFamily: 'SF Pro Rounded',
+                      fontFamily: 'Nunito',
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -104,16 +104,16 @@ class GridViewSongs extends StatelessWidget {
                     style: TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: 13,
-                      fontFamily: 'SF Pro Rounded',
+                      fontFamily: 'Nunito',
                       fontWeight: FontWeight.w400,
                     ),
                   ),
                   Text(
-                    loadedSongs[index]['filter'],
+                    loadList[index]['filter'],
                     style: const TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: 13,
-                      fontFamily: 'SF Pro Rounded',
+                      fontFamily: 'Nunito',
                       fontWeight: FontWeight.w400,
                     ),
                   ),

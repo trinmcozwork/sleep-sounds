@@ -1,19 +1,23 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_assets.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_colors.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_icons.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/pack_details.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/play_screen.dart';
 
 class DraggableScrollPackDetails extends StatefulWidget {
   DraggableScrollPackDetails({
     super.key,
-    required this.loadedSongs,
+    required this.loadList,
     required this.index,
     required this.updateIsPlaying,
+    required this.updateSong,
   });
   final ValueChanged<bool> updateIsPlaying;
-  var loadedSongs;
+  final ValueChanged<int> updateSong;
+  var loadList;
   var index;
 
   @override
@@ -24,22 +28,27 @@ class DraggableScrollPackDetails extends StatefulWidget {
 class _DraggableScrollPackDetailsState
     extends State<DraggableScrollPackDetails> {
   bool _resultValue = false;
+  bool isFavorite = false;
 
-  Future<void> _navigateAndDisplayResult() async {
-    bool result = await _navigateAndDisplaySelection(context);
+  int resultIndex = 0;
+
+  Future<void> _navigateAndDisplayResult(int index) async {
+    bool result = await _navigateAndDisplaySelection(context, index);
     setState(() {
       _resultValue = result;
       widget.updateIsPlaying(_resultValue);
+      widget.updateSong(resultIndex);
     });
   }
 
-  Future<bool> _navigateAndDisplaySelection(BuildContext context) async {
+  Future<bool> _navigateAndDisplaySelection(BuildContext context, index) async {
     bool result = await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => PlayScreen(
           index: widget.index,
-          loadedSongs: widget.loadedSongs,
+          loadList: widget.loadList,
+          loadSong: widget.loadList[widget.index]['listOfSongs'][index],
         ),
       ),
     );
@@ -79,11 +88,11 @@ class _DraggableScrollPackDetailsState
                     ),
                   ),
                   Text(
-                    widget.loadedSongs[widget.index]['title'],
+                    widget.loadList[widget.index]['title'],
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 34,
-                      fontFamily: 'SF Pro Rounded',
+                      fontFamily: 'Nunito',
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -93,11 +102,11 @@ class _DraggableScrollPackDetailsState
                   Row(
                     children: [
                       Text(
-                        widget.loadedSongs[widget.index]['time'],
+                        widget.loadList[widget.index]['time'],
                         style: const TextStyle(
                           color: AppColors.textSecondary,
                           fontSize: 13,
-                          fontFamily: 'SF Pro Rounded',
+                          fontFamily: 'Nunito',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -106,16 +115,16 @@ class _DraggableScrollPackDetailsState
                         style: TextStyle(
                           color: AppColors.textSecondary,
                           fontSize: 13,
-                          fontFamily: 'SF Pro Rounded',
+                          fontFamily: 'Nunito',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                       Text(
-                        widget.loadedSongs[widget.index]['filter'],
+                        widget.loadList[widget.index]['filter'],
                         style: const TextStyle(
                           color: AppColors.textSecondary,
                           fontSize: 13,
-                          fontFamily: 'SF Pro Rounded',
+                          fontFamily: 'Nunito',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -137,7 +146,7 @@ class _DraggableScrollPackDetailsState
                         flex: 1,
                         child: InkWell(
                           onTap: () {
-                            _navigateAndDisplayResult();
+                            _navigateAndDisplayResult(0);
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(
@@ -147,15 +156,27 @@ class _DraggableScrollPackDetailsState
                               borderRadius: BorderRadius.circular(20),
                               color: AppColors.systemPrimary,
                             ),
-                            child: const Text(
-                              "Play",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontFamily: 'SF Pro Rounded',
-                                fontWeight: FontWeight.w700,
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  AppAssets.play,
+                                  height: 24,
+                                ),
+                                const SizedBox(
+                                  width: 4,
+                                ),
+                                const Text(
+                                  "Play",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -166,7 +187,15 @@ class _DraggableScrollPackDetailsState
                       Expanded(
                         flex: 1,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            setState(() {
+                              if (isFavorite == false) {
+                                isFavorite = true;
+                              } else {
+                                isFavorite = false;
+                              }
+                            });
+                          },
                           child: Container(
                             padding: const EdgeInsets.symmetric(
                               vertical: 8,
@@ -175,15 +204,28 @@ class _DraggableScrollPackDetailsState
                               borderRadius: BorderRadius.circular(20),
                               color: AppColors.buttonColor,
                             ),
-                            child: const Text(
-                              "Favorite",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontFamily: 'SF Pro Rounded',
-                                fontWeight: FontWeight.w700,
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  isFavorite
+                                      ? AppIcons.start_half
+                                      : AppIcons.start_fillted,
+                                  height: 24,
+                                ),
+                                Text(
+                                  "Favorite",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: isFavorite
+                                        ? const Color(0xFFFF9C41)
+                                        : Colors.white,
+                                    fontSize: 24,
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -205,7 +247,7 @@ class _DraggableScrollPackDetailsState
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 17,
-                      fontFamily: 'SF Pro Display',
+                      fontFamily: 'Nunito',
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -213,11 +255,11 @@ class _DraggableScrollPackDetailsState
                     height: 12,
                   ),
                   Text(
-                    widget.loadedSongs[widget.index]['description'],
+                    widget.loadList[widget.index]['description'],
                     style: const TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: 17,
-                      fontFamily: 'SF Pro Rounded',
+                      fontFamily: 'Nunito',
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -238,7 +280,7 @@ class _DraggableScrollPackDetailsState
                           style: TextStyle(
                             color: AppColors.textSecondary,
                             fontSize: 18,
-                            fontFamily: 'SF Pro Display',
+                            fontFamily: 'Nunito',
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -249,34 +291,53 @@ class _DraggableScrollPackDetailsState
                           height: 150,
                           child: ListView.builder(
                             itemCount: widget
-                                .loadedSongs[widget.index]['listOfSongs']
-                                .length,
+                                .loadList[widget.index]['listOfSongs'].length,
                             itemBuilder: (BuildContext buildContext, index) {
-                              return GestureDetector(
+                              return InkWell(
+                                onTap: () {
+                                  _navigateAndDisplayResult(index);
+                                  setState(() {
+                                    resultIndex = index;
+                                  });
+                                },
                                 child: Container(
                                   margin: const EdgeInsets.only(bottom: 20),
                                   child: Row(
                                     children: [
                                       Text(
-                                        widget.loadedSongs[index]['listOfSongs']
+                                        widget.loadList[index]['listOfSongs']
                                             [index]['songId'],
                                         style: const TextStyle(
                                           color: AppColors.textSecondary,
                                           fontSize: 18,
-                                          fontFamily: 'SF Pro Rounded',
+                                          fontFamily: 'Nunito',
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
                                       const SizedBox(
                                         width: 20,
                                       ),
+                                      Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(90),
+                                            color: AppColors.backgroundColor),
+                                        child: Image.asset(
+                                          AppAssets.play,
+                                          height: 12,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: 20,
+                                      ),
                                       Text(
-                                        widget.loadedSongs[index]['listOfSongs']
+                                        widget.loadList[index]['listOfSongs']
                                             [index]['songName'],
                                         style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 17,
-                                          fontFamily: 'SF Pro Rounded',
+                                          fontFamily: 'Nunito',
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
@@ -302,7 +363,7 @@ class _DraggableScrollPackDetailsState
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 17,
-                      fontFamily: 'SF Pro Rounded',
+                      fontFamily: 'Nunito',
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -313,16 +374,16 @@ class _DraggableScrollPackDetailsState
                     height: 200,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: widget.loadedSongs.length,
+                      itemCount: widget.loadList.length,
                       itemBuilder: (BuildContext context, index) {
-                        return GestureDetector(
+                        return InkWell(
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => PackDetails(
                                   index: index,
-                                  loadedSongs: widget.loadedSongs,
+                                  loadList: widget.loadList,
                                 ),
                               ),
                             );
@@ -337,7 +398,7 @@ class _DraggableScrollPackDetailsState
                                       width: 140,
                                       height: 140,
                                       child: Image.network(
-                                        widget.loadedSongs[index]['img'],
+                                        widget.loadList[index]['img'],
                                         fit: BoxFit.fitHeight,
                                       ),
                                     ),
@@ -380,11 +441,11 @@ class _DraggableScrollPackDetailsState
                                   height: 8,
                                 ),
                                 Text(
-                                  widget.loadedSongs[index]['title'],
+                                  widget.loadList[index]['title'],
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 17,
-                                    fontFamily: 'SF Pro Rounded',
+                                    fontFamily: 'Nunito',
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -395,11 +456,11 @@ class _DraggableScrollPackDetailsState
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      widget.loadedSongs[index]['time'],
+                                      widget.loadList[index]['time'],
                                       style: const TextStyle(
                                         color: AppColors.textSecondary,
                                         fontSize: 13,
-                                        fontFamily: 'SF Pro Rounded',
+                                        fontFamily: 'Nunito',
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
@@ -408,16 +469,16 @@ class _DraggableScrollPackDetailsState
                                       style: TextStyle(
                                         color: AppColors.textSecondary,
                                         fontSize: 13,
-                                        fontFamily: 'SF Pro Rounded',
+                                        fontFamily: 'Nunito',
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
                                     Text(
-                                      widget.loadedSongs[index]['filter'],
+                                      widget.loadList[index]['filter'],
                                       style: const TextStyle(
                                         color: AppColors.textSecondary,
                                         fontSize: 13,
-                                        fontFamily: 'SF Pro Rounded',
+                                        fontFamily: 'Nunito',
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),

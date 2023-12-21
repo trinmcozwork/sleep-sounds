@@ -16,7 +16,7 @@ class _StartScreenState extends State<StartScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
-        body: GestureDetector(
+        body: InkWell(
           onTap: () {
             Navigator.push(
               context,
@@ -39,7 +39,7 @@ class _StartScreenState extends State<StartScreen> {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 34,
-                    fontFamily: 'SF Pro Rounded',
+                    fontFamily: 'Nunito',
                     fontWeight: FontWeight.w700,
                     height: 0.04,
                   ),
@@ -60,7 +60,7 @@ class _StartScreenState extends State<StartScreen> {
                   style: TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 12,
-                    fontFamily: 'SF Pro Rounded',
+                    fontFamily: 'Nunito',
                     fontWeight: FontWeight.w500,
                     height: 0.12,
                   ),
@@ -74,7 +74,7 @@ class _StartScreenState extends State<StartScreen> {
                   style: TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 17,
-                    fontFamily: 'SF Pro Rounded',
+                    fontFamily: 'Nunito',
                     fontWeight: FontWeight.w600,
                     height: 0.08,
                   ),

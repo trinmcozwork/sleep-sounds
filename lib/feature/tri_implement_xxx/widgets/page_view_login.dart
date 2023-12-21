@@ -61,9 +61,11 @@ class _PageViewLoginState extends State<PageViewLogin> {
             onTap: () {
               if (selectedIndex == 2) {
                 Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const MyBottomNavigation()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyBottomNavigation(false),
+                  ),
+                );
               } else {
                 setState(() {
                   selectedIndex = selectedIndex + 1;

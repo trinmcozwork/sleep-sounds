@@ -3,10 +3,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_assets.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_colors.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/services/router/bottom_navigation.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/widgets/page_view_login.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool _isLogin = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +38,26 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(
                       width: 8,
                     ),
-                    const Text(
-                      'Login with Apple',
-                      style: TextStyle(
-                        color: AppColors.textPrimary,
-                        fontSize: 17,
-                        fontFamily: 'SF Pro Rounded',
-                        fontWeight: FontWeight.w600,
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          _isLogin = true;
+                        });
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyBottomNavigation(_isLogin),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Login with Apple',
+                        style: TextStyle(
+                          color: AppColors.textPrimary,
+                          fontSize: 17,
+                          fontFamily: 'Nunito',
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     )
                   ],

@@ -19,6 +19,10 @@ class AppAssets {
   static const String rain = "assets/composer/icons8-rainwater_catchment.png";
   static const String ultrasound = "assets/composer/icons8-ultrasound.png";
   static const String wave = "assets/composer/icons8-wave_lines.png";
+  static const String train = "assets/composer/icons8-high_speed_train.png";
+  static const String airplane = "assets/composer/icons8-airplane_mode_on.png";
+  static const String city = "assets/composer/icons8-city.png";
+  static const String coffee = "assets/composer/icons8-coffee.png";
 
   //audio
   static const String play = "assets/audio/icons8-play.png";
@@ -26,4 +30,15 @@ class AppAssets {
   static const String fast_forward = "assets/audio/icons8-fast_forward.png";
   static const String repeat = "assets/audio/icons8-repeat-64.png";
   static const String random = "assets/audio/icons8-random-64.png";
+
+  //premium
+  static const String premium_background = "assets/images/Top.png";
+
+  //profile
+  static const String doc = "assets/profile/icons8-document.png";
+  static const String docs = "assets/profile/icons8-documents.png";
+  static const String compass = "assets/profile/icons8-drawing_compass.png";
+  static const String mail = "assets/profile/icons8-mailbox.png";
+  static const String share = "assets/profile/icons8-share_rounded.png";
+  static const String folder = "assets/profile/icons8-user_folder.png";
 }

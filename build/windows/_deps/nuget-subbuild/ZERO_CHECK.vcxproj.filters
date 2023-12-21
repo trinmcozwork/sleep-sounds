@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\trica\Documents\COZWork\source-flutter\flutter_sleep_sounds\build\windows\_deps\nuget-subbuild\CMakeFiles\453fbf00ba368c773da085e96029cca3\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{8C28AB9E-0E95-3BF4-9528-F1532192933A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

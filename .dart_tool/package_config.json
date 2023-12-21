@@ -50,6 +50,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "bloc",
+      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/bloc-8.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "boolean_selector",
       "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/boolean_selector-2.1.1",
       "packageUri": "lib/",
@@ -80,6 +86,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "equatable",
+      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/equatable-2.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "fake_async",
       "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/fake_async-1.3.1",
       "packageUri": "lib/",
@@ -104,6 +116,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "flutter_bloc",
+      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_bloc-8.1.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.3",
       "packageUri": "lib/",
@@ -118,12 +136,6 @@
     {
       "name": "flutter_web_plugins",
       "rootUri": "file:///C:/src/flutter/packages/flutter_web_plugins",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
-      "name": "go_router",
-      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/go_router-12.1.3",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -152,12 +164,6 @@
       "languageVersion": "3.0"
     },
     {
-      "name": "logging",
-      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/logging-1.2.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
-    },
-    {
       "name": "matcher",
       "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/matcher-0.12.16",
       "packageUri": "lib/",
@@ -172,6 +178,12 @@
     {
       "name": "meta",
       "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.9.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "nested",
+      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/nested-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -228,6 +240,12 @@
       "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/plugin_platform_interface-2.1.7",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "provider",
+      "rootUri": "file:///C:/Users/trica/AppData/Local/Pub/Cache/hosted/pub.dev/provider-6.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "sky_engine",
@@ -320,7 +338,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-12-20T09:11:43.876184Z",
+  "generated": "2023-12-21T10:26:04.859036Z",
   "generator": "pub",
   "generatorVersion": "3.1.0-197.0.dev"
 }

@@ -8,19 +8,28 @@ import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/ProfileSc
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/sleep_screen.dart';
 
 class MyBottomNavigation extends StatefulWidget {
-  const MyBottomNavigation({super.key});
+  MyBottomNavigation(this.isLogin, {super.key});
+  bool isLogin;
 
   @override
   State<MyBottomNavigation> createState() => _MyBottomNavigationState();
 }
 
 class _MyBottomNavigationState extends State<MyBottomNavigation> {
-  int pageIndex = 0;
-  final pages = [
-    const SleepScreen(),
-    const ComposerScreen(),
-    const ProfileScreen()
-  ];
+  late int pageIndex;
+  late List<Widget> pages;
+
+  @override
+  void initState() {
+    super.initState();
+    pageIndex = 0;
+    pages = [
+      const SleepScreen(),
+      const ComposerScreen(),
+      ProfileScreen(isLogin: widget.isLogin),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

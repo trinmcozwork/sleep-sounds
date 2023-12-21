@@ -6,9 +6,14 @@ import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_colors
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/audio.dart';
 
 class PlayScreen extends StatefulWidget {
-  const PlayScreen({super.key, required this.index, required this.loadedSongs});
+  const PlayScreen(
+      {super.key,
+      required this.index,
+      required this.loadList,
+      required this.loadSong});
   final index;
-  final loadedSongs;
+  final loadList;
+  final loadSong;
 
   @override
   State<PlayScreen> createState() => _PlayScreenState();
@@ -56,7 +61,7 @@ class _PlayScreenState extends State<PlayScreen> {
                   width: 164,
                   height: 164,
                   child: Image.network(
-                    widget.loadedSongs[widget.index]['img'],
+                    widget.loadList[widget.index]['img'],
                     fit: BoxFit.fitHeight,
                   ),
                 ),
@@ -64,23 +69,23 @@ class _PlayScreenState extends State<PlayScreen> {
                   height: 20,
                 ),
                 Text(
-                  widget.loadedSongs[widget.index]['title'],
+                  widget.loadList[widget.index]['title'],
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 17,
-                    fontFamily: 'SF Pro Rounded',
+                    fontFamily: 'Nunito',
                     fontWeight: FontWeight.w400,
                   ),
                 ),
                 const SizedBox(
                   height: 8,
                 ),
-                const Text(
-                  'The Guitars ',
-                  style: TextStyle(
+                Text(
+                  widget.loadSong['songName'],
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 34,
-                    fontFamily: 'SF Pro Rounded',
+                    fontFamily: 'Nunito',
                     fontWeight: FontWeight.w700,
                   ),
                 ),
