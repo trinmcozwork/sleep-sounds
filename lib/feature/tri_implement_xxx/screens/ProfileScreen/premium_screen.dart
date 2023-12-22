@@ -141,7 +141,7 @@ class PremiumScreen extends StatelessWidget {
                   height: 15,
                 ),
                 const Text(
-                  'Auto-renewable    subscription at \$%/week  ',
+                  'Auto-renewable   subscription at \$%/week  ',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,

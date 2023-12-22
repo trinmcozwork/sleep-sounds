@@ -37,66 +37,73 @@ class _PlayScreenState extends State<PlayScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.pop(context, isPlaying);
-                  },
-                  child: const Icon(
-                    Icons.keyboard_arrow_down,
-                    color: AppColors.textPrimary,
-                    size: 32,
+    return Dismissible(
+      key: const Key("playScreen"),
+      direction: DismissDirection.down,
+      onDismissed: (direction) {
+        Navigator.pop(context, isPlaying);
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.backgroundColor,
+        body: SingleChildScrollView(
+          child: SafeArea(
+            child: Center(
+              child: Column(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.pop(context, isPlaying);
+                    },
+                    child: const Icon(
+                      Icons.keyboard_arrow_down,
+                      color: AppColors.textPrimary,
+                      size: 32,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 60,
-                ),
-                SizedBox(
-                  width: 164,
-                  height: 164,
-                  child: Image.network(
-                    widget.loadList[widget.index]['img'],
-                    fit: BoxFit.fitHeight,
+                  const SizedBox(
+                    height: 60,
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  widget.loadList[widget.index]['title'],
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 17,
-                    fontFamily: 'Nunito',
-                    fontWeight: FontWeight.w400,
+                  SizedBox(
+                    width: 164,
+                    height: 164,
+                    child: Image.network(
+                      widget.loadList[widget.index]['img'],
+                      fit: BoxFit.fitHeight,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  widget.loadSong['songName'],
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontFamily: 'Nunito',
-                    fontWeight: FontWeight.w700,
+                  const SizedBox(
+                    height: 20,
                   ),
-                ),
-                const SizedBox(
-                  height: 100,
-                ),
-                AudioFile(
-                  audioPlayer: audioPlayer,
-                  updateIsPlaying: _updateIsPlaying,
-                ),
-              ],
+                  Text(
+                    widget.loadList[widget.index]['title'],
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    widget.loadSong['songName'],
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 34,
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 100,
+                  ),
+                  AudioFile(
+                    audioPlayer: audioPlayer,
+                    updateIsPlaying: _updateIsPlaying,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

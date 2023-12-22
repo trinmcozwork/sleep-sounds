@@ -5,6 +5,7 @@ import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_assets
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_colors.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/services/router/bottom_navigation.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/widgets/page_view_login.dart';
+import 'dart:io' show Platform;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,6 +16,14 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _isLogin = false;
+
+  _checkPlatform(androidView, iosView) {
+    if (Platform.isAndroid) {
+      return androidView;
+    } else if (Platform.isIOS) {
+      return iosView;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +43,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(AppAssets.apple_icon),
+                    _checkPlatform(
+                      Image.asset(AppAssets.google_icon),
+                      Image.asset(AppAssets.apple_icon),
+                    ),
                     const SizedBox(
                       width: 8,
                     ),
@@ -50,9 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         );
                       },
-                      child: const Text(
-                        'Login with Apple',
-                        style: TextStyle(
+                      child: Text(
+                        _checkPlatform('Login with Google', 'Login with Apple'),
+                        style: const TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: 17,
                           fontFamily: 'Nunito',
