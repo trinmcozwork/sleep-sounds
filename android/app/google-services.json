@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "574591046677",
+    "project_id": "sleep-sounds-1e708",
+    "storage_bucket": "sleep-sounds-1e708.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:574591046677:android:f0c0e74e29cdba4cc1aa1c",
+        "android_client_info": {
+          "package_name": "com.example.flutter_sleep_sounds"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZnHEXBrDlFCzQ8Gs1kQiDc1ESxKbke-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

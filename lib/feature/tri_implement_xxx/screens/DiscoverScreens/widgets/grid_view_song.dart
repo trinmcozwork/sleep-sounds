@@ -34,9 +34,12 @@ class GridViewSongs extends StatelessWidget {
                   SizedBox(
                     width: 140,
                     height: 140,
-                    child: Image.network(
-                      loadList[index]['img'],
-                      fit: BoxFit.fitHeight,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(24),
+                      child: Image.network(
+                        loadList[index]['img'],
+                        fit: BoxFit.fitHeight,
+                      ),
                     ),
                   ),
                   Positioned(

@@ -42,4 +42,5 @@ class AppAssets {
   static const String mail = "assets/profile/icons8-mailbox.png";
   static const String share = "assets/profile/icons8-share_rounded.png";
   static const String folder = "assets/profile/icons8-user_folder.png";
+  static const String music_heart = "assets/profile/icons8-music_heart.png";
 }

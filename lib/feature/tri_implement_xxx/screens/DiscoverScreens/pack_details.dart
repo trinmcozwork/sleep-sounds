@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_assets.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverS
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/draggable_scroll_pack.dart';
 
 class PackDetails extends StatefulWidget {
-  const PackDetails({super.key, required this.index, required this.loadList});
+  PackDetails({super.key, required this.index, required this.loadList});
   final index;
   final loadList;
 
@@ -117,7 +117,7 @@ class _PackDetailsState extends State<PackDetails> {
                       right: 0,
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 41),
-                        height: 70,
+                        height: 90,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -215,9 +215,12 @@ class _PackDetailsState extends State<PackDetails> {
                             margin: const EdgeInsets.only(right: 16),
                             height: 60,
                             width: 60,
-                            child: Image.network(
-                              widget.loadList[widget.index]['img'],
-                              fit: BoxFit.fitHeight,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.network(
+                                widget.loadList[widget.index]['img'],
+                                fit: BoxFit.fitHeight,
+                              ),
                             ),
                           ),
                         ),

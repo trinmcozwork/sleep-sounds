@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_assets.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_colors.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_icons.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/models/sounds_details.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/providers/favorite_provider.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/pack_details.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/play_screen.dart';
+import 'package:provider/provider.dart';
 
 class DraggableScrollPackDetails extends StatefulWidget {
   DraggableScrollPackDetails({
@@ -28,8 +31,7 @@ class DraggableScrollPackDetails extends StatefulWidget {
 class _DraggableScrollPackDetailsState
     extends State<DraggableScrollPackDetails> {
   bool _resultValue = false;
-  bool isFavorite = false;
-
+  bool _isToggle = false;
   int resultIndex = 0;
 
   Future<void> _navigateAndDisplayResult(int index) async {
@@ -57,10 +59,21 @@ class _DraggableScrollPackDetailsState
 
   @override
   Widget build(BuildContext context) {
+    final myProvider = Provider.of<FavoriteProvider>(context, listen: true);
+    final uniqueSounds = FavoriteProvider.of(context).sounds.toSet().toList();
+    setState(() {
+      RegExp regex = RegExp('"id":"${widget.index + 1}"');
+      if (regex.hasMatch(uniqueSounds.toString())) {
+        _isToggle = true;
+      } else if (uniqueSounds.isEmpty) {
+        _isToggle = false;
+      }
+    });
     return DraggableScrollableSheet(
       minChildSize: 0.4,
       maxChildSize: 0.9,
       builder: (context, scrollController) {
+        // print(uniqueSounds);
         return SingleChildScrollView(
           controller: scrollController,
           child: Container(
@@ -189,10 +202,16 @@ class _DraggableScrollPackDetailsState
                         child: InkWell(
                           onTap: () {
                             setState(() {
-                              if (isFavorite == false) {
-                                isFavorite = true;
+                              if (_isToggle == false) {
+                                myProvider.toggleFavorite(
+                                  SoundsDetails.fromJson(
+                                      widget.loadList[widget.index]),
+                                );
                               } else {
-                                isFavorite = false;
+                                myProvider.toggleFavorite(
+                                  SoundsDetails.fromJson(
+                                      widget.loadList[widget.index]),
+                                );
                               }
                             });
                           },
@@ -208,16 +227,16 @@ class _DraggableScrollPackDetailsState
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
-                                  isFavorite
+                                  _isToggle
                                       ? AppIcons.start_half
                                       : AppIcons.start_fillted,
                                   height: 24,
                                 ),
                                 Text(
-                                  "Favorite",
+                                  _isToggle ? "unFavorite" : "Favorite",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    color: isFavorite
+                                    color: _isToggle
                                         ? const Color(0xFFFF9C41)
                                         : Colors.white,
                                     fontSize: 24,
@@ -397,9 +416,12 @@ class _DraggableScrollPackDetailsState
                                     SizedBox(
                                       width: 140,
                                       height: 140,
-                                      child: Image.network(
-                                        widget.loadList[index]['img'],
-                                        fit: BoxFit.fitHeight,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(4),
+                                        child: Image.network(
+                                          widget.loadList[index]['img'],
+                                          fit: BoxFit.fitHeight,
+                                        ),
                                       ),
                                     ),
                                     Positioned(

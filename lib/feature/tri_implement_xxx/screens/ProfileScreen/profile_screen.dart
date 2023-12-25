@@ -6,6 +6,7 @@ import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_colors
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_icons.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/ProfileScreen/favorite_screen.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/ProfileScreen/premium_screen.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/widgets/check_platform.dart';
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({super.key, required this.isLogin});
@@ -137,10 +138,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               const SizedBox(
                                 height: 4,
                               ),
-                              const Text(
-                                'Login with Apple ID \nemail@gmail.com',
+                              Text(
+                                checkPlatform(
+                                  'Login with Google ID \nemail@gmail.com',
+                                  'Login with Apple ID \nemail@gmail.com',
+                                ),
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Color(0x99EBEBF5),
                                   fontSize: 13,
                                   fontFamily: 'Nunito',
@@ -200,10 +204,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               const SizedBox(
                                 height: 4,
                               ),
-                              const Text(
-                                'In order to access the library of favorite packs \nof sounds, log in with Apple ID',
+                              Text(
+                                'In order to access the library of favorite packs \nof sounds, log in with ${checkPlatform('Google ID', 'Apple ID')}',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Color(0x99EBEBF5),
                                   fontSize: 13,
                                   fontFamily: 'Nunito',
@@ -228,13 +232,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Image.asset(AppAssets.apple_icon),
+                                      checkPlatform(
+                                        Image.asset(AppAssets.google_icon),
+                                        Image.asset(AppAssets.apple_icon),
+                                      ),
                                       const SizedBox(
                                         width: 8,
                                       ),
-                                      const Text(
-                                        'Login with Apple',
-                                        style: TextStyle(
+                                      Text(
+                                        checkPlatform(
+                                          'Login with Google',
+                                          'Login with Apple',
+                                        ),
+                                        style: const TextStyle(
                                           color: AppColors.textPrimary,
                                           fontSize: 17,
                                           fontFamily: 'Nunito',

@@ -3,6 +3,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_colors.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/pack_details.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/audio.dart';
 
 class PlayScreen extends StatefulWidget {
@@ -38,10 +39,11 @@ class _PlayScreenState extends State<PlayScreen> {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
+      background: PackDetails(index: widget.index, loadList: widget.loadList),
       key: const Key("playScreen"),
       direction: DismissDirection.down,
       onDismissed: (direction) {
-        Navigator.pop(context, isPlaying);
+        // Navigator.pop(context, isPlaying);
       },
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
