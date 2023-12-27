@@ -1,10 +1,10 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_typing_uninitialized_variables, file_names
 
-import 'package:audioplayers/audioplayers.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_colors.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/pack_details.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/audio.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/pack_details_screen.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/audio_player.dart';
 
 class PlayScreen extends StatefulWidget {
   const PlayScreen(
@@ -21,21 +21,6 @@ class PlayScreen extends StatefulWidget {
 }
 
 class _PlayScreenState extends State<PlayScreen> {
-  AudioPlayer audioPlayer = AudioPlayer();
-  bool isPlaying = false;
-
-  _updateIsPlaying(bool isUpdatedPlaying) {
-    setState(() {
-      isPlaying = isUpdatedPlaying;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    audioPlayer = AudioPlayer();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Dismissible(
@@ -43,7 +28,7 @@ class _PlayScreenState extends State<PlayScreen> {
       key: const Key("playScreen"),
       direction: DismissDirection.down,
       onDismissed: (direction) {
-        // Navigator.pop(context, isPlaying);
+        Navigator.pop(context);
       },
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
@@ -54,7 +39,7 @@ class _PlayScreenState extends State<PlayScreen> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.pop(context, isPlaying);
+                      Navigator.pop(context);
                     },
                     child: const Icon(
                       Icons.keyboard_arrow_down,
@@ -68,8 +53,8 @@ class _PlayScreenState extends State<PlayScreen> {
                   SizedBox(
                     width: 164,
                     height: 164,
-                    child: Image.network(
-                      widget.loadList[widget.index]['img'],
+                    child: CachedNetworkImage(
+                      imageUrl: widget.loadList[widget.index]['img'],
                       fit: BoxFit.fitHeight,
                     ),
                   ),
@@ -100,10 +85,7 @@ class _PlayScreenState extends State<PlayScreen> {
                   const SizedBox(
                     height: 100,
                   ),
-                  AudioFile(
-                    audioPlayer: audioPlayer,
-                    updateIsPlaying: _updateIsPlaying,
-                  ),
+                  const AudioFile(),
                 ],
               ),
             ),

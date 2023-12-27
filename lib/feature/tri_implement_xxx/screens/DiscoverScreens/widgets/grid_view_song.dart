@@ -1,6 +1,9 @@
+// ignore_for_file: file_names
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_colors.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/pack_details.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/pack_details_screen.dart';
 
 class GridViewSongs extends StatelessWidget {
   const GridViewSongs({
@@ -36,15 +39,15 @@ class GridViewSongs extends StatelessWidget {
                     height: 140,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(24),
-                      child: Image.network(
-                        loadList[index]['img'],
+                      child: CachedNetworkImage(
+                        imageUrl: loadList[index]['img'],
                         fit: BoxFit.fitHeight,
                       ),
                     ),
                   ),
                   Positioned(
                     top: 16,
-                    left: 8,
+                    right: 8,
                     child: SizedBox(
                       height: 32,
                       width: 32,

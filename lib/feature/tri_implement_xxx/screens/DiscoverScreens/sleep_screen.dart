@@ -1,7 +1,9 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_colors.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_icons.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/models/sounds_details.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_icons.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/models/sounds.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/grid_view_song.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -65,7 +67,7 @@ class _SleepScreenState extends State<SleepScreen> {
                 children: [
                   Container(
                     margin: const EdgeInsets.all(8),
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(19),
                       color: AppColors.systemPrimary,
@@ -91,7 +93,7 @@ class _SleepScreenState extends State<SleepScreen> {
                   ),
                   Container(
                     margin: const EdgeInsets.all(8),
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(19),
                       color: AppColors.buttonColor,
@@ -117,7 +119,7 @@ class _SleepScreenState extends State<SleepScreen> {
                   ),
                   Container(
                     margin: const EdgeInsets.all(8),
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(19),
                       color: AppColors.buttonColor,
@@ -129,7 +131,7 @@ class _SleepScreenState extends State<SleepScreen> {
                           width: 4,
                         ),
                         const Text(
-                          'For Kid',
+                          'Intrusmental',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
@@ -153,10 +155,16 @@ class _SleepScreenState extends State<SleepScreen> {
                 if (snapshot.hasData) {
                   return GridViewSongs(loadList: loadList);
                 } else if (snapshot.hasError) {
-                  return const Text('Error');
+                  return const Text(
+                    'Error',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: AppColors.textPrimary),
+                  );
                 } else {
                   return const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      color: AppColors.textPrimary,
+                    ),
                   );
                 }
               },

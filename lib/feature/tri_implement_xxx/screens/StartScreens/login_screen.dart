@@ -1,11 +1,12 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, file_names, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_assets.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_colors.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/services/router/bottom_navigation.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_assets.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/services/firebase/firebase_services.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/services/navigation/bottom_navigation.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/widgets/check_platform.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/widgets/page_view_login.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/StartScreens/widgets/page_view_login.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -43,10 +44,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: 8,
                     ),
                     InkWell(
-                      onTap: () {
+                      onTap: () async {
                         setState(() {
                           _isLogin = true;
                         });
+                        await FirebaseServices().signInWithGoogle();
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

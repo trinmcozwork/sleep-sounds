@@ -1,12 +1,13 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, must_be_immutable
+// ignore_for_file: prefer_typing_uninitialized_variables, must_be_immutable, file_names
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_assets.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_colors.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/assets/app_icons.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/models/sounds_details.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/providers/favorite_provider.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/pack_details.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_assets.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_icons.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/models/sounds.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/providers/Favorite.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/pack_details_screen.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/play_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -15,10 +16,8 @@ class DraggableScrollPackDetails extends StatefulWidget {
     super.key,
     required this.loadList,
     required this.index,
-    required this.updateIsPlaying,
     required this.updateSong,
   });
-  final ValueChanged<bool> updateIsPlaying;
   final ValueChanged<int> updateSong;
   var loadList;
   var index;
@@ -30,21 +29,11 @@ class DraggableScrollPackDetails extends StatefulWidget {
 
 class _DraggableScrollPackDetailsState
     extends State<DraggableScrollPackDetails> {
-  bool _resultValue = false;
   bool _isToggle = false;
   int resultIndex = 0;
 
-  Future<void> _navigateAndDisplayResult(int index) async {
-    bool result = await _navigateAndDisplaySelection(context, index);
-    setState(() {
-      _resultValue = result;
-      widget.updateIsPlaying(_resultValue);
-      widget.updateSong(resultIndex);
-    });
-  }
-
-  Future<bool> _navigateAndDisplaySelection(BuildContext context, index) async {
-    bool result = await Navigator.push(
+  Future<void> _navigateAndDisplaySelection(BuildContext context, index) async {
+    await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => PlayScreen(
@@ -54,7 +43,9 @@ class _DraggableScrollPackDetailsState
         ),
       ),
     );
-    return result;
+    setState(() {
+      widget.updateSong(resultIndex);
+    });
   }
 
   @override
@@ -159,7 +150,7 @@ class _DraggableScrollPackDetailsState
                         flex: 1,
                         child: InkWell(
                           onTap: () {
-                            _navigateAndDisplayResult(0);
+                            _navigateAndDisplaySelection(context, 0);
                           },
                           child: Container(
                             padding: const EdgeInsets.symmetric(
@@ -233,7 +224,7 @@ class _DraggableScrollPackDetailsState
                                   height: 24,
                                 ),
                                 Text(
-                                  _isToggle ? "unFavorite" : "Favorite",
+                                  "Favorite",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: _isToggle
@@ -314,7 +305,7 @@ class _DraggableScrollPackDetailsState
                             itemBuilder: (BuildContext buildContext, index) {
                               return InkWell(
                                 onTap: () {
-                                  _navigateAndDisplayResult(index);
+                                  _navigateAndDisplaySelection(context, index);
                                   setState(() {
                                     resultIndex = index;
                                   });
@@ -418,15 +409,16 @@ class _DraggableScrollPackDetailsState
                                       height: 140,
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(4),
-                                        child: Image.network(
-                                          widget.loadList[index]['img'],
+                                        child: CachedNetworkImage(
+                                          imageUrl: widget.loadList[index]
+                                              ['img'],
                                           fit: BoxFit.fitHeight,
                                         ),
                                       ),
                                     ),
                                     Positioned(
                                       top: 16,
-                                      left: 8,
+                                      right: 8,
                                       child: SizedBox(
                                         height: 32,
                                         width: 32,
