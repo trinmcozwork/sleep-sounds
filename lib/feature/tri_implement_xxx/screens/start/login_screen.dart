@@ -6,7 +6,7 @@ import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colo
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/services/firebase/firebase_services.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/services/navigation/bottom_navigation.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/widgets/check_platform.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/StartScreens/widgets/page_view_login.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/start/widgets/page_view_login.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

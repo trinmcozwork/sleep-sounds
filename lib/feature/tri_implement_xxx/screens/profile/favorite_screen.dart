@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/providers/Favorite.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/ProfileScreens/widgets/empty_favorites.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/ProfileScreens/widgets/sound_list.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/profile/widgets/empty_favorites.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/profile/widgets/sound_list.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});

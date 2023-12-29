@@ -4,30 +4,31 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_icons.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/play_screen.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/draggable_scroll_pack.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/buttons/fast_forward_btn.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/buttons/play_btn.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/providers/sounds.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/play_screen.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/view/draggable_scroll_pack.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/button/fast_forward_btn.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/button/play_btn.dart';
+import 'package:provider/provider.dart';
 
 class PackDetails extends StatefulWidget {
-  PackDetails({super.key, required this.index, required this.loadList});
-  final index;
-  final loadList;
+  PackDetails({super.key});
 
   @override
   State<PackDetails> createState() => _PackDetailsState();
 }
 
 class _PackDetailsState extends State<PackDetails> {
-  int songId = 0;
-  _updateSong(int isUpdatedSong) {
+  String nameOfSongIsPlaying = '';
+  _updateSong(String isUpdatedSong) {
     setState(() {
-      songId = isUpdatedSong;
+      nameOfSongIsPlaying = isUpdatedSong;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final soundsProvider = Provider.of<SoundsProvider>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
@@ -69,7 +70,8 @@ class _PackDetailsState extends State<PackDetails> {
                     SizedBox(
                       height: 500,
                       child: CachedNetworkImage(
-                        imageUrl: widget.loadList[widget.index]['img'],
+                        imageUrl: soundsProvider
+                            .album[soundsProvider.indexAlbum]['img'],
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -142,98 +144,98 @@ class _PackDetailsState extends State<PackDetails> {
               ],
             ),
             DraggableScrollPackDetails(
-              loadList: widget.loadList,
-              index: widget.index,
               updateSong: _updateSong,
             ),
-            Positioned(
-              bottom: 0,
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PlayScreen(
-                        index: widget.index,
-                        loadList: widget.loadList,
-                        loadSong: widget.loadList[widget.index]['listOfSongs']
-                            [0],
-                      ),
-                    ),
-                  );
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width.toDouble(),
-                  height: 70,
-                  decoration: const BoxDecoration(
-                    color: AppColors.systemPrimary,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                    ),
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Container(
-                            margin: const EdgeInsets.only(right: 16),
-                            height: 60,
-                            width: 60,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: CachedNetworkImage(
-                                imageUrl: widget.loadList[widget.index]['img'],
-                                fit: BoxFit.fitHeight,
-                              ),
+            nameOfSongIsPlaying == ""
+                ? Container()
+                : Positioned(
+                    bottom: 0,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PlayScreen(
+                              loadSong: nameOfSongIsPlaying,
                             ),
                           ),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width.toDouble(),
+                        height: 70,
+                        decoration: const BoxDecoration(
+                          color: AppColors.systemPrimary,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            topRight: Radius.circular(8),
+                          ),
                         ),
-                        Expanded(
-                          flex: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          child: Row(
                             children: [
-                              Text(
-                                // "aaa",
-                                widget.loadList[widget.index]['listOfSongs']
-                                    [songId]['songName'],
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 17,
-                                  fontFamily: 'Nunito',
-                                  fontWeight: FontWeight.w400,
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  margin: const EdgeInsets.only(right: 16),
+                                  height: 60,
+                                  width: 60,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: CachedNetworkImage(
+                                      imageUrl: soundsProvider
+                                              .album[soundsProvider.indexAlbum]
+                                          ['img'],
+                                      fit: BoxFit.fitHeight,
+                                    ),
+                                  ),
                                 ),
                               ),
-                              Text(
-                                widget.loadList[widget.index]['title'],
-                                style: const TextStyle(
-                                  color: Color(0x99EBEBF5),
-                                  fontSize: 13,
-                                  fontFamily: 'Nunito',
-                                  fontWeight: FontWeight.w400,
+                              Expanded(
+                                flex: 4,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      nameOfSongIsPlaying,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 17,
+                                        fontFamily: 'Nunito',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    Text(
+                                      soundsProvider
+                                              .album[soundsProvider.indexAlbum]
+                                          ['title'],
+                                      style: const TextStyle(
+                                        color: Color(0x99EBEBF5),
+                                        fontSize: 13,
+                                        fontFamily: 'Nunito',
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    )
+                                  ],
                                 ),
-                              )
+                              ),
+                              const Expanded(
+                                flex: 1,
+                                child: MusicPlayerButton(),
+                              ),
+                              const Expanded(
+                                flex: 1,
+                                child: FastForwardButton(),
+                              ),
                             ],
                           ),
                         ),
-                        const Expanded(
-                          flex: 1,
-                          child: MusicPlayerButton(),
-                        ),
-                        const Expanded(
-                          flex: 1,
-                          child: FastForwardButton(),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
-              ),
-            )
           ],
         ),
       ),

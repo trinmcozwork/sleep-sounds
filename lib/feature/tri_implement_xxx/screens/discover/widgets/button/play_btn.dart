@@ -17,8 +17,8 @@ class MusicPlayerButton extends StatelessWidget {
               audioPlayerProvider.togglePlayPause();
             },
             child: audioPlayerProvider.isPlaying
-                ? Image.asset(AppAssets.play, height: 25)
-                : Image.asset(AppAssets.pause, height: 25));
+                ? Image.asset(AppAssets.pause, height: 25)
+                : Image.asset(AppAssets.play, height: 25));
       },
     );
   }

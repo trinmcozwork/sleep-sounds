@@ -3,37 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_icons.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/models/sounds.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/grid_view_song.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/view/builder_grid_view.dart';
 
-class SleepScreen extends StatefulWidget {
+class SleepScreen extends StatelessWidget {
   const SleepScreen({super.key});
-
-  @override
-  State<SleepScreen> createState() => _SleepScreenState();
-}
-
-class _SleepScreenState extends State<SleepScreen> {
-  List loadList = [];
-
-  Future<List<SoundsDetails>> fetchData() async {
-    const apiUrl = 'https://6572aae9192318b7db407e1b.mockapi.io/mydata';
-
-    final response = await http.get(Uri.parse(apiUrl));
-
-    if (response.statusCode == 200) {
-      List jsonResponse = json.decode(response.body);
-
-      setState(() {
-        loadList = jsonResponse;
-      });
-      return jsonResponse.map((data) => SoundsDetails.fromJson(data)).toList();
-    } else {
-      throw Exception('Unexpected error occured!');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,28 +120,9 @@ class _SleepScreenState extends State<SleepScreen> {
               ),
             ),
           ),
-          Expanded(
+          const Expanded(
             flex: 5,
-            child: FutureBuilder<List>(
-              future: fetchData(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return GridViewSongs(loadList: loadList);
-                } else if (snapshot.hasError) {
-                  return const Text(
-                    'Error',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: AppColors.textPrimary),
-                  );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.textPrimary,
-                    ),
-                  );
-                }
-              },
-            ),
+            child: BuilderGridView(),
           ),
         ],
       ),

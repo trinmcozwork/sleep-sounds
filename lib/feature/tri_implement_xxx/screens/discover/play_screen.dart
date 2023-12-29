@@ -3,17 +3,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/pack_details_screen.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/audio_player.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/providers/sounds.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/pack_details_screen.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/audio/audio_player.dart';
+import 'package:provider/provider.dart';
 
 class PlayScreen extends StatefulWidget {
-  const PlayScreen(
-      {super.key,
-      required this.index,
-      required this.loadList,
-      required this.loadSong});
-  final index;
-  final loadList;
+  const PlayScreen({super.key, required this.loadSong});
+
   final loadSong;
 
   @override
@@ -23,8 +20,9 @@ class PlayScreen extends StatefulWidget {
 class _PlayScreenState extends State<PlayScreen> {
   @override
   Widget build(BuildContext context) {
+    final soundsProvider = Provider.of<SoundsProvider>(context);
     return Dismissible(
-      background: PackDetails(index: widget.index, loadList: widget.loadList),
+      background: PackDetails(),
       key: const Key("playScreen"),
       direction: DismissDirection.down,
       onDismissed: (direction) {
@@ -54,7 +52,8 @@ class _PlayScreenState extends State<PlayScreen> {
                     width: 164,
                     height: 164,
                     child: CachedNetworkImage(
-                      imageUrl: widget.loadList[widget.index]['img'],
+                      imageUrl: soundsProvider.album[soundsProvider.indexAlbum]
+                          ['img'],
                       fit: BoxFit.fitHeight,
                     ),
                   ),
@@ -62,7 +61,7 @@ class _PlayScreenState extends State<PlayScreen> {
                     height: 20,
                   ),
                   Text(
-                    widget.loadList[widget.index]['title'],
+                    soundsProvider.album[soundsProvider.indexAlbum]['title'],
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 17,
@@ -74,13 +73,14 @@ class _PlayScreenState extends State<PlayScreen> {
                     height: 8,
                   ),
                   Text(
-                    widget.loadSong['songName'],
+                    widget.loadSong,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 34,
                       fontFamily: 'Nunito',
                       fontWeight: FontWeight.w700,
                     ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(
                     height: 100,

@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_assets.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/StartScreens/login_screen.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/start/login_screen.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({super.key});

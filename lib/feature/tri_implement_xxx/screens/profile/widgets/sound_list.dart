@@ -1,7 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/models/sounds.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/models/list_album.dart';
 
 import 'sound_item.dart';
 

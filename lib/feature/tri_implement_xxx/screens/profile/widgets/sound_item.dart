@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/models/sounds.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/models/list_album.dart';
 
 class SoundItem extends StatelessWidget {
   final SoundsDetails sound;

@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/providers/Favorite.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/providers/audio_player.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/StartScreens/start_screen.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/providers/sounds.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/start/start_screen.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/services/navigation/bottom_navigation.dart';
 import 'package:provider/provider.dart';
 
 import 'feature/tri_implement_xxx/services/firebase/firebase_options.dart';
@@ -22,19 +25,27 @@ class MainApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (BuildContext context) {
-            return FavoriteProvider();
-          },
+          create: (context) => SoundsProvider(),
         ),
         ChangeNotifierProvider(
-          create: (BuildContext context) {
-            return AudioPlayerProvider();
-          },
+          create: (context) => FavoriteProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AudioPlayerProvider(),
         ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const StartScreen(),
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            if (snapshot.hasData) {
+              return MyBottomNavigation(true);
+            } else {
+              return const StartScreen();
+            }
+          },
+        ),
         theme: ThemeData(fontFamily: 'Nunito'),
       ),
     );

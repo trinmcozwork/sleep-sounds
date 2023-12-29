@@ -3,12 +3,12 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/providers/audio_player.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/buttons/repeat_btn.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/buttons/fast_forward_btn.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/buttons/play_btn.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/buttons/random_btn.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/buttons/slow_forward_btn.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/widgets/buttons/slider.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/button/repeat_btn.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/button/fast_forward_btn.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/button/play_btn.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/button/random_btn.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/button/slow_forward_btn.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/button/slider.dart';
 import 'package:provider/provider.dart';
 
 class AudioFile extends StatefulWidget {

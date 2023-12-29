@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_icons.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/ComposerScreens/composer_screen.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/ProfileScreens/profile_screen.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/sleep_screen.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/composer/composer_screen.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/profile/profile_screen.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/sleep_screen.dart';
 
 class MyBottomNavigation extends StatefulWidget {
   MyBottomNavigation(this.isLogin, {super.key});

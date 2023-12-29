@@ -3,30 +3,29 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/DiscoverScreens/pack_details_screen.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/providers/sounds.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/pack_details_screen.dart';
+import 'package:provider/provider.dart';
 
 class GridViewSongs extends StatelessWidget {
   const GridViewSongs({
     super.key,
-    required this.loadList,
   });
-
-  final List loadList;
 
   @override
   Widget build(BuildContext context) {
+    final soundsProvider = Provider.of<SoundsProvider>(context);
+
     return GridView.builder(
-      itemCount: loadList.length,
+      itemCount: soundsProvider.album.length,
       itemBuilder: (BuildContext context, index) {
         return InkWell(
           onTap: () {
+            soundsProvider.getIndexAlbum(index);
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => PackDetails(
-                  index: index,
-                  loadList: loadList,
-                ),
+                builder: (context) => PackDetails(),
               ),
             );
           },
@@ -40,7 +39,7 @@ class GridViewSongs extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(24),
                       child: CachedNetworkImage(
-                        imageUrl: loadList[index]['img'],
+                        imageUrl: soundsProvider.album[index]['img'],
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -82,7 +81,7 @@ class GridViewSongs extends StatelessWidget {
                 height: 8,
               ),
               Text(
-                loadList[index]['title'],
+                soundsProvider.album[index]['title'],
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 17,
@@ -97,7 +96,7 @@ class GridViewSongs extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    loadList[index]['time'],
+                    soundsProvider.album[index]['time'],
                     style: const TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: 13,
@@ -115,7 +114,7 @@ class GridViewSongs extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    loadList[index]['filter'],
+                    soundsProvider.album[index]['filter'],
                     style: const TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: 13,

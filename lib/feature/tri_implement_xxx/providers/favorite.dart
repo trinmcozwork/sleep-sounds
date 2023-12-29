@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_final_fields, camel_case_types, file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/models/sounds.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/models/list_album.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteProvider extends ChangeNotifier {
@@ -10,8 +10,6 @@ class FavoriteProvider extends ChangeNotifier {
 
   void toggleFavorite(SoundsDetails sound) {
     final isExist = _sounds.contains(soundsDetailsToJson(sound));
-    // print(_sounds);
-    // print(isExist);
     if (isExist) {
       _sounds.remove(soundsDetailsToJson(sound));
     } else {

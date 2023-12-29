@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_assets.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_icons.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/ProfileScreens/favorite_screen.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/ProfileScreens/premium_screen.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/profile/favorite_screen.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/profile/premium_screen.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/services/firebase/firebase_services.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/widgets/check_platform.dart';
 
@@ -19,13 +19,13 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String? _email = '';
+  String _email = '';
+  String _name = '';
 
   Future<void> _isLogin() async {
     await FirebaseServices().signInWithGoogle();
     setState(() {
       widget.isLogin = true;
-      _email = FirebaseAuth.instance.currentUser?.displayName;
     });
   }
 
@@ -37,6 +37,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
       });
       await FirebaseServices().signOut();
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      if (widget.isLogin == true) {
+        _email = FirebaseAuth.instance.currentUser!.email.toString();
+        _name = FirebaseAuth.instance.currentUser!.displayName.toString();
+      }
+    });
   }
 
   @override
@@ -78,10 +89,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(AppAssets.folder),
-                              const Text(
-                                "Fisrt name Last name",
+                              Text(
+                                _name.toString(),
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 17,
                                   fontFamily: 'Nunito',

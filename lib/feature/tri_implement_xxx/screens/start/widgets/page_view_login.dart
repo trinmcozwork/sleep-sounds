@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/models/content_login.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/services/navigation/bottom_navigation.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/StartScreens/widgets/indicator.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/StartScreens/widgets/page_view_item.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/start/widgets/indicator.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/start/widgets/page_view_item.dart';
 
 class PageViewLogin extends StatefulWidget {
   const PageViewLogin({super.key});

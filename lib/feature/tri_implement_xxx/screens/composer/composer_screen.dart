@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
-import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/ComposerScreens/widgets/category_list.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/composer/widgets/category_list.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/widgets/composer_list.dart';
 
 class ComposerScreen extends StatefulWidget {
