@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/models/list_album.dart';
@@ -20,8 +21,8 @@ class SoundItem extends StatelessWidget {
               height: 140,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(24),
-                child: Image.network(
-                  sound.img,
+                child: CachedNetworkImage(
+                  imageUrl: sound.img,
                   fit: BoxFit.fitHeight,
                 ),
               ),

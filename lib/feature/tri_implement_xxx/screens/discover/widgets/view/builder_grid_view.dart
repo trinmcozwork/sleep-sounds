@@ -18,7 +18,7 @@ class BuilderGridView extends StatelessWidget {
         if (snapshot.hasData) {
           return const GridViewSongs();
         } else if (snapshot.hasError) {
-          throw Exception('${snapshot.stackTrace}');
+          throw Exception('${snapshot.error}');
         } else {
           return const Center(
             child: CircularProgressIndicator(

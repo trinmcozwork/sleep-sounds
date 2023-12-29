@@ -116,8 +116,15 @@ class AudioPlayerProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getPlaylistUrl(List<dynamic> list) {
+  void setPlaylistUrl(List<dynamic> list) {
     playlistUrl = list;
+    notifyListeners();
+  }
+
+  void setCurrentTrackIndex(dynamic trackIndex) {
+    _currentTrackIndex = trackIndex;
+    togglePlayPause();
+    togglePlayPause();
     notifyListeners();
   }
 
