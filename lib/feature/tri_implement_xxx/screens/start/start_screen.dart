@@ -18,7 +18,7 @@ class _StartScreenState extends State<StartScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
-        body: InkWell(
+        body: GestureDetector(
           onTap: () {
             Navigator.push(
               context,

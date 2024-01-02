@@ -26,6 +26,17 @@ class FirebaseServices {
     }
   }
 
+  userCredential() async {
+    UserCredential? userCredential = await signInWithGoogle();
+    User? user = userCredential?.user;
+    print('User ID: ${user?.uid}');
+    print('Display Name: ${user?.displayName}');
+    print('Email: ${user?.email}');
+    print('Photo URL: ${user?.photoURL}');
+    print('ID Token: ${userCredential?.credential?.token}');
+    print('Access Token: ${userCredential?.credential?.accessToken}');
+  }
+
   signOut() async {
     await _auth.signOut();
     await _googleSignIn.signOut();

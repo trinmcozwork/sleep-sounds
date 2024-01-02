@@ -1,12 +1,26 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, prefer_final_fields
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_icons.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/view/builder_grid_view.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/services/firebase/firebase_token.dart';
 
-class SleepScreen extends StatelessWidget {
+class SleepScreen extends StatefulWidget {
   const SleepScreen({super.key});
+
+  @override
+  State<SleepScreen> createState() => _SleepScreenState();
+}
+
+class _SleepScreenState extends State<SleepScreen> {
+  FirebaseToken firebaseToken = FirebaseToken();
+  @override
+  void initState() {
+    firebaseToken.onTokenRefresh();
+    firebaseToken.getToken();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

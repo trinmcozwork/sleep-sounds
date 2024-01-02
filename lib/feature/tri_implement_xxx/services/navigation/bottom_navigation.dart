@@ -22,6 +22,7 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
   @override
   void initState() {
     super.initState();
+
     pageIndex = 0;
     pages = [
       const SleepScreen(),

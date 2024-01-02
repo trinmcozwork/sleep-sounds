@@ -42,6 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
+
     setState(() {
       if (widget.isLogin == true) {
         _email = FirebaseAuth.instance.currentUser!.email.toString();
