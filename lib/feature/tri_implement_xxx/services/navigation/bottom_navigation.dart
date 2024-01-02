@@ -25,7 +25,7 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
     pageIndex = 0;
     pages = [
       const SleepScreen(),
-      const ComposerScreen(),
+      ComposerScreen(),
       ProfileScreen(isLogin: widget.isLogin),
     ];
   }

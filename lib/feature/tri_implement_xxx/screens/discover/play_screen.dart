@@ -8,19 +8,13 @@ import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/audio/audio_player.dart';
 import 'package:provider/provider.dart';
 
-class PlayScreen extends StatefulWidget {
-  const PlayScreen({super.key, required this.loadSong});
+class PlayScreen extends StatelessWidget {
+  const PlayScreen({super.key});
 
-  final loadSong;
-
-  @override
-  State<PlayScreen> createState() => _PlayScreenState();
-}
-
-class _PlayScreenState extends State<PlayScreen> {
   @override
   Widget build(BuildContext context) {
     final soundsProvider = Provider.of<SoundsProvider>(context);
+
     return Dismissible(
       background: PackDetails(),
       key: const Key("playScreen"),
@@ -73,7 +67,7 @@ class _PlayScreenState extends State<PlayScreen> {
                     height: 8,
                   ),
                   Text(
-                    widget.loadSong,
+                    soundsProvider.song[soundsProvider.indexSong]['songName'],
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 34,
@@ -85,7 +79,7 @@ class _PlayScreenState extends State<PlayScreen> {
                   const SizedBox(
                     height: 100,
                   ),
-                  const AudioFile(),
+                  AudioFile(),
                 ],
               ),
             ),

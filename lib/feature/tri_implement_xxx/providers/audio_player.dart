@@ -32,14 +32,15 @@ class AudioPlayerProvider extends ChangeNotifier {
           playNext();
         }
       }
-      notifyListeners();
     });
+    notifyListeners();
   }
 
   void togglePlayPause() {
     if (_isPlaying == false) {
       _isPlaying = true;
       audioPlayer.play(UrlSource(playlistUrl[_currentTrackIndex]));
+
       // audioPlayer.play(AssetSource('sounds/Faded.mp3')); //at local
     } else if (_isPlaying == true) {
       _isPlaying = false;
@@ -122,6 +123,7 @@ class AudioPlayerProvider extends ChangeNotifier {
   }
 
   void setCurrentTrackIndex(dynamic trackIndex) {
+    //bonus: indexAlbum!!!
     _currentTrackIndex = trackIndex;
     togglePlayPause();
     togglePlayPause();

@@ -19,7 +19,8 @@ class ListFeaturedOn extends StatelessWidget {
       itemBuilder: (BuildContext context, index) {
         return InkWell(
           onTap: () {
-            Navigator.push(
+            soundsProvider.setIndexAlbum(index);
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => PackDetails(),

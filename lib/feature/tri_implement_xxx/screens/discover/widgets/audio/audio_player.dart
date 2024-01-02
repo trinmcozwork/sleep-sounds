@@ -11,17 +11,15 @@ import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/button/slider.dart';
 import 'package:provider/provider.dart';
 
-class AudioFile extends StatefulWidget {
-  const AudioFile({super.key});
+class AudioFile extends StatelessWidget {
+  AudioFile({super.key});
 
-  @override
-  State<AudioFile> createState() => _AudioFileState();
-}
-
-class _AudioFileState extends State<AudioFile> {
   AudioPlayer audioPlayer = AudioPlayer();
+
   bool isPlaying = false;
+
   bool isPause = false;
+
   bool isRepeat = false;
 
   Widget loadAsset() {

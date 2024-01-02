@@ -10,14 +10,13 @@ import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/providers/audio_p
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/providers/sounds.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/play_screen.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/view/list_featured_on.dart';
+import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/discover/widgets/view/list_of_song.dart';
 import 'package:provider/provider.dart';
 
 class DraggableScrollPackDetails extends StatefulWidget {
   const DraggableScrollPackDetails({
     super.key,
-    required this.updateSong,
   });
-  final ValueChanged<String> updateSong;
 
   @override
   State<DraggableScrollPackDetails> createState() =>
@@ -27,22 +26,6 @@ class DraggableScrollPackDetails extends StatefulWidget {
 class _DraggableScrollPackDetailsState
     extends State<DraggableScrollPackDetails> {
   bool _isToggle = false;
-  String resultString = '';
-
-  Future<void> _navigateAndDisplaySelection(
-      BuildContext context, String value) async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PlayScreen(
-          loadSong: resultString == '' ? value : resultString,
-        ),
-      ),
-    );
-    setState(() {
-      widget.updateSong(resultString);
-    });
-  }
 
   List playlistUrl = [];
 
@@ -61,7 +44,6 @@ class _DraggableScrollPackDetailsState
     } else if (uniqueSounds.isEmpty) {
       _isToggle = false;
     }
-
     return DraggableScrollableSheet(
       minChildSize: 0.4,
       maxChildSize: 0.9,
@@ -160,44 +142,9 @@ class _DraggableScrollPackDetailsState
                         children: [
                           Expanded(
                             flex: 1,
-                            child: InkWell(
-                              onTap: () {
-                                _navigateAndDisplaySelection(context,
-                                    soundsProvider.song[0]['songName']);
-                                audioProvider.setPlaylistUrl(playlistUrl);
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 8,
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: AppColors.systemPrimary,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      AppAssets.play,
-                                      height: 24,
-                                    ),
-                                    const SizedBox(
-                                      width: 4,
-                                    ),
-                                    const Text(
-                                      "Play",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 24,
-                                        fontFamily: 'Nunito',
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            child: PlayButton(
+                                audioProvider: audioProvider,
+                                playlistUrl: playlistUrl),
                           ),
                           const SizedBox(
                             width: 24,
@@ -291,104 +238,7 @@ class _DraggableScrollPackDetailsState
                       const SizedBox(
                         height: 16,
                       ),
-                      Container(
-                        padding: const EdgeInsets.all(24),
-                        decoration: BoxDecoration(
-                          color: AppColors.buttonColor,
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'LIST OF SONGS',
-                              style: TextStyle(
-                                color: AppColors.textSecondary,
-                                fontSize: 18,
-                                fontFamily: 'Nunito',
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            SizedBox(
-                              height: 150,
-                              child: ListView.builder(
-                                itemCount: soundsProvider.song.length,
-                                itemBuilder: (context, index) {
-                                  return InkWell(
-                                    onTap: () {
-                                      _navigateAndDisplaySelection(
-                                          context,
-                                          soundsProvider.song[index]
-                                              ['songName']);
-                                      setState(() {
-                                        resultString = soundsProvider
-                                            .song[index]['songName'];
-                                      });
-                                      audioProvider.setCurrentTrackIndex(index);
-                                      audioProvider.setPlaylistUrl(playlistUrl);
-                                    },
-                                    child: Container(
-                                      margin: const EdgeInsets.only(bottom: 20),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            index.toString(),
-                                            style: const TextStyle(
-                                              color: AppColors.textSecondary,
-                                              fontSize: 18,
-                                              fontFamily: 'Nunito',
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 20,
-                                          ),
-                                          Container(
-                                            padding: const EdgeInsets.all(8),
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(90),
-                                                color:
-                                                    AppColors.backgroundColor),
-                                            child: Image.asset(
-                                              AppAssets.play,
-                                              height: 12,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 20,
-                                          ),
-                                          Expanded(
-                                            flex: 1,
-                                            child: Text(
-                                              soundsProvider.song[index]
-                                                  ['songName'],
-                                              overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 17,
-                                                fontFamily: 'Nunito',
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 0.5,
-                                            color: AppColors.textSecondary,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      ListOfSong(playlistUrl: playlistUrl),
                       const SizedBox(
                         height: 20,
                       ),
@@ -419,6 +269,63 @@ class _DraggableScrollPackDetailsState
           ),
         );
       },
+    );
+  }
+}
+
+class PlayButton extends StatelessWidget {
+  const PlayButton({
+    super.key,
+    required this.audioProvider,
+    required this.playlistUrl,
+  });
+
+  final AudioPlayerProvider audioProvider;
+  final List playlistUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        audioProvider.setPlaylistUrl(playlistUrl);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const PlayScreen(),
+          ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          vertical: 8,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: AppColors.systemPrimary,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              AppAssets.play,
+              height: 24,
+            ),
+            const SizedBox(
+              width: 4,
+            ),
+            const Text(
+              "Play",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -6,14 +6,9 @@ import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/providers/Favorit
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/profile/widgets/empty_favorites.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/profile/widgets/sound_list.dart';
 
-class FavoriteScreen extends StatefulWidget {
+class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
 
-  @override
-  State<FavoriteScreen> createState() => _FavoriteScreenState();
-}
-
-class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
     final provider = FavoriteProvider.of(context);

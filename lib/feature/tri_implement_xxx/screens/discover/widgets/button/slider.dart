@@ -15,7 +15,7 @@ class SliderCustom extends StatelessWidget {
           inactiveColor: AppColors.textSecondary,
           value: audioPlayerProvider.getPosition().inSeconds.toDouble(),
           min: 0.0,
-          max: audioPlayerProvider.getDuration().inSeconds.toDouble(),
+          max: audioPlayerProvider.getDuration().inSeconds.toDouble() + 1,
           onChanged: (double value) {
             audioPlayerProvider.changeToSecond(value.toInt());
           },

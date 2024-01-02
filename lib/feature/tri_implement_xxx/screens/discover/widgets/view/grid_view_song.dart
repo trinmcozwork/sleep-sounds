@@ -21,7 +21,7 @@ class GridViewSongs extends StatelessWidget {
       itemBuilder: (BuildContext context, index) {
         return InkWell(
           onTap: () {
-            soundsProvider.getIndexAlbum(index);
+            soundsProvider.setIndexAlbum(index);
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -40,6 +40,11 @@ class GridViewSongs extends StatelessWidget {
                       borderRadius: BorderRadius.circular(24),
                       child: CachedNetworkImage(
                         imageUrl: soundsProvider.album[index]['img'],
+                        placeholder: (context, url) => const Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.systemPrimary,
+                          ),
+                        ),
                         fit: BoxFit.fitHeight,
                       ),
                     ),

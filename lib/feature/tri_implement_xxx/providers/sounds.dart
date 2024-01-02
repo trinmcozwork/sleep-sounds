@@ -62,8 +62,30 @@ class SoundsProvider extends ChangeNotifier {
   var _indexAlbum = 0;
   get indexAlbum => _indexAlbum;
 
-  void getIndexAlbum(int index) {
+  void setIndexAlbum(int index) {
     _indexAlbum = index;
+    notifyListeners();
+  }
+
+  var _indexSong = 0;
+  get indexSong => _indexSong;
+
+  void setIndexSong(int index) {
+    _indexSong = index;
+    notifyListeners();
+  }
+
+  var _currentAlbum = '';
+  var _currentSong = '';
+  var _currentImage = '';
+  get currentAlbum => _currentAlbum;
+  get currentSong => _currentSong;
+  get currentImage => _currentImage;
+  void setCurrentAlbumPlaying(
+      String currentAlbum, String currentSong, String currentImage) {
+    _currentAlbum = currentAlbum;
+    _currentSong = currentSong;
+    _currentImage = currentImage;
     notifyListeners();
   }
 }

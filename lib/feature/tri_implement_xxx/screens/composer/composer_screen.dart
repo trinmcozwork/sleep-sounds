@@ -1,21 +1,19 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/contains/app_colors.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/screens/composer/widgets/category_list.dart';
 import 'package:flutter_sleep_sounds/feature/tri_implement_xxx/widgets/composer_list.dart';
 
-class ComposerScreen extends StatefulWidget {
-  const ComposerScreen({super.key});
+class ComposerScreen extends StatelessWidget {
+  ComposerScreen({super.key});
 
-  @override
-  State<ComposerScreen> createState() => _ComposerScreenState();
-}
-
-class _ComposerScreenState extends State<ComposerScreen> {
   List<int> selectedChildIndices = [];
+
   List<int> selectedNatureIndices = [];
+
   List<int> selectedAnimalsIndices = [];
+
   List<int> selectedIndustrialIndices = [];
 
   @override
